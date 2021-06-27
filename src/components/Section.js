@@ -1,17 +1,21 @@
 import InfoForm from "./InfoForm";
 import AddButton from "./AddButton";
+import React from "react";
 
-function Section(props) {
-    var {sectionInfo} = props;
-    var editingMode = true;
+class Section extends React.Component {
+    constructor(props) {
+        super(props);
+    }
 
-    return (
-        <section>
-            <h2>{sectionInfo.sectionTitle}</h2>
-            <InfoForm infoTitles={sectionInfo.infoTitles} editingMode={editingMode} />
-            <AddButton />
-        </section>
-    );
+    render() {
+        return (
+            <section>
+                <h2>{this.props.template.sectionTitle}</h2>
+                <InfoForm fields={this.props.template.fields} />
+                <AddButton />
+            </section>
+        );
+    }
 }
 
 export default Section;

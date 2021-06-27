@@ -1,9 +1,8 @@
-//import react?
+function EditButton(props) {
+    var btnText = props.editing ? "Resubmit" : "Edit";
 
-function EditButton() {
-    //needs to be able to change from edit to resubmit
     return (
-        <button>Edit/Resubmit</button>
+        <button onClick={props.handleClick}>{btnText}</button>
     );
 }
 

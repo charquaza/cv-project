@@ -1,33 +1,50 @@
+import React from "react";
 import EditButton from "./EditButton";
 
-function InfoForm(props) {
-    if (props.editingMode) {
+class InfoForm extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            editingMode: false  //belong in state? in InfoForm or Section?
+        }
+    }
+
+    toggleEditingMode = () => {
+        this.setState((state) => {
+            return {editingMode: !state.editingMode}
+        });
+    }
+
+    render() {
+        if (this.state.editingMode) {
+            return (
+                <div>
+                    <div>
+                        {this.props.fields.map((title) => {
+                            return (
+                                <input key={title} type="text" defaultValue={title} />
+                            );
+                        })}
+                    </div>
+                    <EditButton editing={this.state.editingMode} handleClick={this.toggleEditingMode} />
+                </div>
+            );
+        } 
+    
         return (
             <div>
                 <div>
-                    {props.infoTitles.map((title) => {
+                    {this.props.fields.map((title) => {
                         return (
-                            <input key={title} type="text" defaultValue={title} />
+                            <p key={title}>{title}</p>
                         );
                     })}
                 </div>
-                <EditButton />
+                <EditButton editing={this.state.editingMode} handleClick={this.toggleEditingMode} />
             </div>
         );
-    } 
-
-    return (
-        <div>
-            <div>
-                {props.infoTitles.map((title) => {
-                    return (
-                        <p key={title}>{title}</p>
-                    );
-                })}
-            </div>
-            <EditButton />
-        </div>
-    );
+    }
 }
 
 export default InfoForm;
