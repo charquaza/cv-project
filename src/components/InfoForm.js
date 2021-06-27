@@ -6,13 +6,31 @@ class InfoForm extends React.Component {
         super(props);
 
         this.state = {
-            editingMode: false  //belong in state? in InfoForm or Section?
+            editingMode: false,  //belong in state? in InfoForm or Section?
+            fields: this.props.fields
         }
     }
 
     toggleEditingMode = () => {
         this.setState((state) => {
-            return {editingMode: !state.editingMode}
+            return {editingMode: !state.editingMode};
+        });
+    }
+
+    updateFields = (e) => {
+        var inputsContainer = e.target.previousElementSibling;
+        //console.log(fieldsContainer); <- why does this return <p>s?
+        var inputs = Array.from(inputsContainer.children);
+        var inputValues = inputs.map((inputElem) => {
+            return inputElem.value;
+        });
+        console.log(inputValues);
+
+        this.setState((state) => {
+            return {
+                editingMode: !state.editingMode,
+                fields: inputValues
+            };
         });
     }
 
@@ -21,13 +39,13 @@ class InfoForm extends React.Component {
             return (
                 <div>
                     <div>
-                        {this.props.fields.map((title) => {
+                        {this.state.fields.map((value, index) => {
                             return (
-                                <input key={title} type="text" defaultValue={title} />
+                                <input key={index} type="text" defaultValue={value} />
                             );
                         })}
                     </div>
-                    <EditButton editing={this.state.editingMode} handleClick={this.toggleEditingMode} />
+                    <EditButton editing={this.state.editingMode} handleClick={this.updateFields} />
                 </div>
             );
         } 
@@ -35,9 +53,9 @@ class InfoForm extends React.Component {
         return (
             <div>
                 <div>
-                    {this.props.fields.map((title) => {
+                    {this.state.fields.map((value, index) => {
                         return (
-                            <p key={title}>{title}</p>
+                            <p key={index}>{value}</p>
                         );
                     })}
                 </div>
