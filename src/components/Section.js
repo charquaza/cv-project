@@ -1,5 +1,4 @@
 import InfoForm from "./InfoForm";
-import AddButton from "./AddButton";
 import React from "react";
 
 class Section extends React.Component {
@@ -12,7 +11,7 @@ class Section extends React.Component {
             <section>
                 <h2>{this.props.template.sectionTitle}</h2>
                 <InfoForm fields={this.props.template.fields} />
-                <AddButton />
+                <button>Add</button>
             </section>
         );
     }

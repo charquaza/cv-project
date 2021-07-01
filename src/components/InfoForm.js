@@ -6,7 +6,7 @@ class InfoForm extends React.Component {
         super(props);
 
         this.state = {
-            editingMode: false,  //belong in state? in InfoForm or Section?
+            editingMode: false,
             fields: this.props.fields
         }
     }
@@ -19,12 +19,11 @@ class InfoForm extends React.Component {
 
     updateFields = (e) => {
         var inputsContainer = e.target.previousElementSibling;
-        //console.log(fieldsContainer); <- why does this return <p>s?
+        //console.log(inputsContainer); <- why does this return <p>s?
         var inputs = Array.from(inputsContainer.children);
         var inputValues = inputs.map((inputElem) => {
             return inputElem.value;
         });
-        console.log(inputValues);
 
         this.setState((state) => {
             return {
