@@ -34,9 +34,12 @@ class InfoForm extends React.Component {
     }
 
     render() {
+        //re-renders if not PureComponent; how retain state when re-render?
+        //console.log("re-rendered!");
+        //console.log(this.state);
         if (this.state.editingMode) {
             return (
-                <div>
+                <div id={this.props.id}>
                     <div>
                         {this.state.fields.map((value, index) => {
                             return (
@@ -45,12 +48,13 @@ class InfoForm extends React.Component {
                         })}
                     </div>
                     <EditButton editing={this.state.editingMode} handleClick={this.updateFields} />
+                    <button onClick={this.props.deleteHandler}>Delete</button>
                 </div>
             );
         } 
     
         return (
-            <div>
+            <div id={this.props.id}>
                 <div>
                     {this.state.fields.map((value, index) => {
                         return (
@@ -59,6 +63,7 @@ class InfoForm extends React.Component {
                     })}
                 </div>
                 <EditButton editing={this.state.editingMode} handleClick={this.toggleEditingMode} />
+                <button onClick={this.props.deleteHandler}>Delete</button>
             </div>
         );
     }
