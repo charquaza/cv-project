@@ -1,0 +1,30 @@
+h1, h2 {
+    display: flex;
+    justify-content: center;
+}
+
+section > button {
+    margin-left: 48.5%;
+}
+
+ul {
+    padding-left: 0;
+}
+
+li {
+    list-style: none;
+}
+
+li p {
+    display: inline;
+}
+
+.fields-container {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.buttons-container {
+    display: flex;
+    justify-content: center;
+}

@@ -18,7 +18,7 @@ class Section extends React.Component {
     }
 
     removeForm = (e) => {
-        var idToRemove = e.target.parentElement.id;
+        var idToRemove = e.target.id;
         this.setState({
             formIDs: this.state.formIDs.filter((id) => {
                 return id !== idToRemove;
@@ -33,7 +33,11 @@ class Section extends React.Component {
 
                 <ul>
                     {this.state.formIDs.map((id) => {
-                        return <InfoForm fields={this.props.template.fields} deleteHandler={this.removeForm} key={id} id={id} />;
+                        return (
+                            <li key={id}>
+                                <InfoForm fields={this.props.template.fields} deleteHandler={this.removeForm} id={id} />
+                            </li>
+                        );
                     })}
                 </ul>
 

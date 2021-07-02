@@ -18,7 +18,7 @@ class InfoForm extends React.Component {
     }
 
     updateFields = (e) => {
-        var inputsContainer = e.target.previousElementSibling;
+        var inputsContainer = e.target.parentElement.previousElementSibling;
         //console.log(inputsContainer); <- why does this return <p>s?
         var inputs = Array.from(inputsContainer.children);
         var inputValues = inputs.map((inputElem) => {
@@ -39,31 +39,35 @@ class InfoForm extends React.Component {
         //console.log(this.state);
         if (this.state.editingMode) {
             return (
-                <div id={this.props.id}>
-                    <div>
+                <div>
+                    <div className="fields-container">
                         {this.state.fields.map((value, index) => {
                             return (
                                 <input key={index} type="text" defaultValue={value} />
                             );
                         })}
                     </div>
-                    <EditButton editing={this.state.editingMode} handleClick={this.updateFields} />
-                    <button onClick={this.props.deleteHandler}>Delete</button>
+                    <div className="buttons-container">
+                        <EditButton editing={this.state.editingMode} handleClick={this.updateFields} />
+                        <button onClick={this.props.deleteHandler} id={this.props.id}>Delete</button>
+                    </div>
                 </div>
             );
         } 
     
         return (
-            <div id={this.props.id}>
-                <div>
+            <div>
+                <div className="fields-container">
                     {this.state.fields.map((value, index) => {
                         return (
                             <p key={index}>{value}</p>
                         );
                     })}
                 </div>
-                <EditButton editing={this.state.editingMode} handleClick={this.toggleEditingMode} />
-                <button onClick={this.props.deleteHandler}>Delete</button>
+                <div className="buttons-container">
+                    <EditButton editing={this.state.editingMode} handleClick={this.toggleEditingMode} />
+                    <button onClick={this.props.deleteHandler} id={this.props.id}>Delete</button>
+                </div>
             </div>
         );
     }
