@@ -19,7 +19,6 @@ class InfoForm extends React.PureComponent {
 
     updateFields = (e) => {
         var inputsContainer = e.target.parentElement.previousElementSibling;
-        //console.log(inputsContainer); <- why does this return <p>s?
         var inputs = Array.from(inputsContainer.children);
         var inputValues = inputs.map((inputElem) => {
             return inputElem.value;
